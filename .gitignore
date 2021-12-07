@@ -1,0 +1,8 @@
+bin/
+obj/
+*.pdf
+*.pptx
+*.ppt
+*.layout
+*.depend
+*.cbp
