@@ -4,17 +4,28 @@
 using namespace std;
 
 /*
-penggunaan struktur data yang kita pakai untuk tubes ini ialah
-    1keN tipe 1; dan
+    penggunaan struktur data yang kita pakai untuk tubes ini ialah
     NkeN tipe 2;
 
-    sedangkan untung listnya, kami menggunakan single linked list dengan pointer last
+    sedangkan untuk listnya,
+    kami menggunakan single linked list dengan pointer last untuk list mahasiswa dan list mata kuliah
+    namun untuk list mata kuliah yang diambil, kami tidak menggunakan pointer last
+
+    tl:
+    the type of the data structure that we use for these program is
+    N to N type 2;
+
+    meanwhile for the list,
+    we use single linked list with last pointer for student list and course list
+    but for the list of courses taken, we do not use the last pointer
+
 */
 
 typedef struct Mahasiswa infotypeParrent;
 typedef struct MataKuliah infotypeChildren;
 typedef struct node_parrent *adrP;
 typedef struct node_children *adrC;
+typedef struct node_relation *adrR;
 
 struct Mahasiswa {
     //tipe bentukan mahasiswa
@@ -28,10 +39,34 @@ struct MataKuliah {
     string nama, dosen, ruangan, waktu_mulai;
 };
 
+
+struct listParrent {
+    //tipe data bentukan untuk linked list parrent
+    adrP First = NULL;
+    adrP Last = NULL;
+};
+
+struct listChildren {
+    //tipe data bentukan untuk linked list children
+    adrC First = NULL;
+    adrC Last = NULL;
+};
+
+struct listRelation {
+    //tipe data bentukan untuk daftar mata kuliah
+    adrR First = NULL;
+};
+
+struct node_relation{
+    //tipe data bentukan untuk list relasi
+    adrR next;
+    adrC next_course;
+};
+
 struct node_parrent {
     //tipe data bentukan untuk node parrent
     infotypeParrent info;
-    adrC nextAnak;
+    listRelation course;
     adrP next;
 };
 
@@ -41,19 +76,8 @@ struct node_children {
     adrC next;
 };
 
-struct listParrent {
-    //tipe data bentukan untuk linked list parrent
-    adrP First;
-    adrP Last;
-};
-
-struct listChildren {
-    //tipe data bentukan untuk linked list children
-    adrC First;
-    adrC Last;
-};
 
 //masukan fungsi-fungsi yang dipakai ke bawah tulisan ini
-//optional: tambahkan juga komentarnya
+//insert functions used below this text
 
 #endif // HEADER_H_INCLUDED
