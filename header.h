@@ -21,9 +21,9 @@ using namespace std;
 
 */
 
-typedef struct Mahasiswa infotypeParrent;
+typedef struct Mahasiswa infotypeParent;
 typedef struct MataKuliah infotypeChildren;
-typedef struct node_parrent *adrP;
+typedef struct node_parent *adrP;
 typedef struct node_children *adrC;
 typedef struct node_relation *adrR;
 
@@ -40,7 +40,7 @@ struct MataKuliah {
 };
 
 
-struct listParrent {
+struct listParent {
     //tipe data bentukan untuk linked list parrent
     adrP First = NULL;
     adrP Last = NULL;
@@ -63,9 +63,9 @@ struct node_relation{
     adrC next_course;
 };
 
-struct node_parrent {
+struct node_parent {
     //tipe data bentukan untuk node parrent
-    infotypeParrent info;
+    infotypeParent info;
     listRelation course;
     adrP next;
 };
