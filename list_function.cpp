@@ -36,7 +36,42 @@ void insertNewParent(listParent &PL, infotypeParent newInfo){
 }
 
 
+void deleteParent(listParent &PL, adrP p){
+    /*
+    IS: terdefinisi sebuah linked list parent yang tidak kosong, dan
+        sebuah pointer yang menunjukan node/element list parent yang
+        ingin dihapus dari list
+    FS: node/element list parent yang ingin dihapus dari list terhapus
+    */
+    if( p == PL.First){
+        if(PL.First == PL.Last){
+            //jika hanya ada 1 node/element
+            PL.First = NULL;
+            PL.Last = NULL;
+        } else {
+            //jika p berada di paling depan list
+            PL.First = p->next;
+            p->next = NULL;
+        }
+    } else if(p == PL.Last){
+        //jika p berada di paling belakang list
+        adrP q = PL.First;
+        while(q->next != PL.Last){
+            q = q->next;
+        }
+        PL.Last = q;
+        q->next = NULL;
+    } else if(PL.First!=NULL){
+        //jika p tidak di paling depan atau belakang, dan list tidak kosong
+        adrP q = PL.First;
+        while(q->next != p){
+            q = q->next;
+        }
+        q->next = p->next;
+        p->next = NULL;
+    }
 
+}
 
 
 
