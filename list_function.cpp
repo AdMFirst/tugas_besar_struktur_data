@@ -92,3 +92,25 @@ void showParent(listParent PL){
 
 
 //---------------------------Function untuk children list---------------------------------------
+void insertNewChildren(listChildren &CL, infotypeChildren newInfo){
+    /*
+    IS: terdefinisi sebual list children CL (bisa kosong) dan sebuah infotype baru
+        yang akan dimasukan ke dalam list
+    FS: infotype baru akan dubah menjadi element list children dan ditambahkan ke
+        dalam list sebagai element terakhir
+    */
+
+    //ket: CL=Children list, CP=Children pointer
+    adrC CP = new node_children;
+    CP->info = newInfo;
+    CP->next = NULL;
+
+    if(CL.First == NULL || CL.Last == NULL){
+        //Jika list kosong
+        CL.First = CP;
+        CL.Last = CP;
+    } else {
+        CL.Last->next = CP;
+        CL.Last = CP;
+    }
+}
