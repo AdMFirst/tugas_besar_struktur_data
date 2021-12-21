@@ -90,5 +90,18 @@ void showParent(listParent PL){
 }
 
 
+bool findParent(listParent PL, string NIM){
+    // IS. terdefinisi sebuah listParent dan sebuah string NIM
+    // FS. mengembalikan true apabila string NIM ditemukan di dalam listParent
+    adrP p = PL.First;
+    while (p != NULL){
+        if (p->info.nim != NIM){
+            return true
+        }
+        p = p->next
+    }
+    return false
+}
+
 
 //---------------------------Function untuk children list---------------------------------------
