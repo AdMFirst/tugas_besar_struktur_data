@@ -73,7 +73,20 @@ void deleteParent(listParent &PL, adrP p){
 
 }
 
-
+void showParent(listParent &PL){
+    // IS. terdefinisi sebuah listParent (list mungkin kosong)
+    // FS. menampilkan seluruh isi dari list parent
+    adrP p = P.First;
+    if (p == NULL){
+        cout << "List Kosong." << endl;
+    }else{
+        while (p != NULL){
+        cout << "Nama\t: " << p->info.nama << endl;
+        cout << "NIM\t: " << p->info.nim << endl << endl;
+        p = p->next;
+        }
+    }
+}
 
 
 
