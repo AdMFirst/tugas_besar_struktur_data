@@ -95,7 +95,7 @@ bool findParent(listParent PL, string NIM){
     // FS. mengembalikan true apabila string NIM ditemukan di dalam listParent
     adrP p = PL.First;
     while (p != NULL){
-        if (p->info.nim != NIM){
+        if (p->info.nim == NIM){
             return true
         }
         p = p->next
@@ -105,3 +105,41 @@ bool findParent(listParent PL, string NIM){
 
 
 //---------------------------Function untuk children list---------------------------------------
+
+
+void deleteChildren(listChildren &CL, adrC c){
+    /*
+    IS: terdefinisi sebuah linked list children yang tidak kosong, dan
+        sebuah pointer yang menunjukan node/element list children yang
+        ingin dihapus dari list
+    FS: node/element list children yang ingin dihapus dari list terhapus
+    */
+    if( c == CL.First){
+        if(CL.First == CL.Last){
+            //jika hanya ada 1 node/element
+            CL.First = NULL;
+            CL.Last = NULL;
+        } else {
+            //jika c berada di paling depan list
+            CL.First = c->next;
+            c->next = NULL;
+        }
+    } else if(c == CL.Last){
+        //jika c berada di paling belakang list
+        adrC ptr = CL.First;
+        while(ptr->next != CL.Last){
+            ptr = ptr->next;
+        }
+        CL.Last = ptr;
+        ptr->next = NULL;
+    } else if(CL.First!=NULL){
+        //jika c tidak berada di paling depan atau belakang
+        adrC ptr = CL.First;
+        while(ptr->next != c){
+            ptr = ptr->next;
+        }
+        ptr->next = c->next;
+        c->next = NULL;
+    }
+
+}
