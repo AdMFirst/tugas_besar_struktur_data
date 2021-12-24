@@ -96,11 +96,11 @@ bool findParent(listParent PL, string NIM){
     adrP p = PL.First;
     while (p != NULL){
         if (p->info.nim == NIM){
-            return true
+            return true;
         }
-        p = p->next
+        p = p->next;
     }
-    return false
+    return false;
 }
 
 
