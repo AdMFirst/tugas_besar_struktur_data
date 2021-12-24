@@ -163,3 +163,4 @@ void deleteChildren(listChildren &CL, adrC c){
         ptr->next = c->next;
         c->next = NULL;
     }
+}
