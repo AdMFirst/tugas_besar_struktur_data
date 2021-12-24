@@ -82,9 +82,9 @@ void showParent(listParent PL){
         cout << "List Kosong." << endl;
     }else{
         while (p != NULL){
-        cout << "Nama\t: " << p->info.nama << endl;
-        cout << "NIM\t: " << p->info.nim << endl << endl;
-        p = p->next;
+            cout << "Nama\t: " << p->info.nama << endl;
+            cout << "NIM\t: " << p->info.nim << endl << endl;
+            p = p->next;
         }
     }
 }
@@ -102,6 +102,8 @@ bool findParent(listParent PL, string NIM){
     }
     return false
 }
+
+
 
 
 //---------------------------Function untuk children list---------------------------------------
@@ -164,3 +166,27 @@ void deleteChildren(listChildren &CL, adrC c){
         c->next = NULL;
     }
 }
+
+void showChildren(listChildren &CL){
+    /*
+    IS :Terdefinisi sebuah list children (list bisa kosong) yang
+        akan di printkan ke layar
+    FS :Seluruh isi list children di ouputkan ke layar
+    */
+    adrC C = CL.First;
+    if (C == NULL){
+        cout << "List Kosong." << endl;
+    }else{
+        while (C != NULL){
+            cout << "Mata kuliah :" << C->info.nama<<endl;
+            cout << "\tdiajar oleh dosen "<<C->info.dosen<<endl;
+            cout << "\tmulai pada jam " << C->info.waktu_mulai<<endl;
+            cout << "\tdi ruangan "<<C->info.ruangan<<endl;
+            C = C->next;
+        }
+    }
+
+}
+
+
+//---------------------------------Fungsi untuk relasi-------------------------------
