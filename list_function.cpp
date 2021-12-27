@@ -90,17 +90,18 @@ void showParent(listParent PL){
 }
 
 
-bool findParent(listParent PL, string NIM){
+adrP findParent(listParent PL, string NIM){
     // IS. terdefinisi sebuah listParent dan sebuah string NIM
-    // FS. mengembalikan true apabila string NIM ditemukan di dalam listParent
+    // FS. mengembalikan address parent apabila string NIM ditemukan di dalam listParent dan Null jika tidak
+    //PS : sori di ubah, bikin relasinya lebih gampang kalo return adrP
     adrP p = PL.First;
     while (p != NULL){
         if (p->info.nim == NIM){
-            return true;
+            return p;
         }
         p = p->next;
     }
-    return false;
+    return p;
 }
 
 
@@ -188,5 +189,53 @@ void showChildren(listChildren &CL){
 
 }
 
+adrC findChildren(listChildren CL, string namaMaKul){
+    /*
+    IS : Terdefinisi sebuah list children CL dan sebuah string nama mata kuliah namaMaKul
+    FS : Jika terdapat infotype dengan nama mata kuliah yang sama dengan namaMaKul, maka
+         akan direturnkan address dari node infotype tersebut. Jika tidak ditemukan maka
+         akan mereturn NULL
+    */
+    adrC CP = CL.First;
+    while( CP != NULL){
+        if(CP->info.nama == namaMaKul){
+            return CP;
+        }
+        CP = CP->next;
+    }
+    return CP;
+}
 
 //---------------------------------Fungsi untuk relasi-------------------------------
+
+void createRelation(adrP PP, adrC CP){
+    /*
+    IS :Terdapat pointer parent dan pointer children yang akan dihubungkan
+    FS :Pada list relation di PP akan dimasukan element relation baru yang menunjuk ke CP
+    */
+
+    //ket : CP = Children's pointer, PP = Parent's pointer, RP = Relation's pointer
+
+    adrR RP = new node_relation;
+    RP->next_course = CP;
+    RP->next = NULL;
+
+    if(PP->course.First == NULL){
+        //Jika list kosong
+        PP->course.First = RP;
+    } else {
+        adrR tempRP = PP->course.First;
+        while(tempRP->next != NULL){
+            tempRP = tempRP->next;
+        }
+        tempRP->next = RP;
+    }
+
+}
+
+void deleteRelation(adrP PP, adrR RP){
+    /*
+    IS :masukan berupa pointer yang menunjuk ke node parent, dan pointer node relation yang akan dihapus
+    FS :RP dihapus dari dalam list relation PP
+    */
+}
