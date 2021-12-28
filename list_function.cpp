@@ -238,4 +238,65 @@ void deleteRelation(adrP PP, adrR RP){
     IS :masukan berupa pointer yang menunjuk ke node parent, dan pointer node relation yang akan dihapus
     FS :RP dihapus dari dalam list relation PP
     */
+    if(RP == PP->course.First){
+        //Jika RP element relation paling depan
+        if(RP->next != NULL){
+            //jika terdapat element setelah RP
+            PP->course.First = PP->course.First->next;
+        } else {
+            //Jika tidak terdapat element setelah RP
+            PP->course.First = NULL;
+        }
+    } else {
+        //Jika RP bukan element paling depan
+        adrR RPiterator = PP->course.First;
+        while(RPiterator->next != RP){
+            RPiterator = RPiterator->next;
+        }
+
+        //RPiterator merupakan pointer iterasi yang menunjukan ke element sebelum RP
+        if(RP->next == NULL){
+            //Jika RP meruapakan element paling belakang
+            RPiterator->next = NULL;
+        } else {
+            //Jika RP bukan merupakan element paling belakang atau paling depan
+            RPiterator->next = RP->next;
+        }
+    }
+    RP->next = NULL;
+}
+
+/*
+------------------
+ini bagian bikin fungsi bebas
+
+2 jenis pengolahan data yang melibatkan child dan parent (total 20 poin),
+misal :
+- Min/Max from all data parent and child,
+- count something from all data parent and child,
+- sum something from all data parent and child,
+- find child from all data parent,
+- update some data from all data parent and child,
+- show some data from all data parent and child,
+- Dll
+
+bikin satu satu aja
+-----------------
+*/
+
+void semesterBaru(listParent PL){
+    /*
+    Semester baru merupakan saat dimana mahasiswa menyelesaikan mata kuliah yang diambil
+    di suatu semester dan mengambil mata kuliah baru untuk semester selanjutnya. Fungsi ini
+    berguna untung mengahapus semua relasi yang ada di semua node parent
+    IS : Terdapat parent list
+    FS : Relation list yang ada di setiap node parent akan dikosongkan
+    */
+
+    adrP PP = PL.First;
+    while(PP != NULL){
+        PP->course.First = NULL;
+        PP = PP->next;
+    }
+
 }
