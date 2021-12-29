@@ -79,5 +79,19 @@ struct node_children {
 
 //masukan fungsi-fungsi yang dipakai ke bawah tulisan ini
 //insert functions used below this text
+void insertNewParent(listParent &PL, infotypeParent newInfo);
+void deleteParent(listParent &PL, adrP p);
+void showParent(listParent PL);
+adrP findParent(listParent PL, string NIM);
 
+
+void insertNewChildren(listChildren &CL, infotypeChildren newInfo);
+void deleteChildren(listChildren &CL, adrC c);
+void showChildren(listChildren &CL);
+adrC findChildren(listChildren CL, string namaMaKul);
+
+void createRelation(listParent PL, listChildren CL, string nim, string makul);
+void deleteRelation(listParent PL, string nim, string makul);
+
+void semesterBaru(listParent PL);
 #endif // HEADER_H_INCLUDED
