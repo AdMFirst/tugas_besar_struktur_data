@@ -208,12 +208,14 @@ adrC findChildren(listChildren CL, string namaMaKul){
 
 //---------------------------------Fungsi untuk relasi-------------------------------
 
-void createRelation(adrP PP, adrC CP){
+void createRelation(listParent PL, listChildren CL, string nim, string makul){
     /*
-    IS :Terdapat pointer parent dan pointer children yang akan dihubungkan
-    FS :Pada list relation di PP akan dimasukan element relation baru yang menunjuk ke CP
+    IS :Terdapat list parent dan list children, serta nim parent dan nama makul chidlren
+    FS :Pada list relation di node parent akan dimasukan element relation baru yang menunjuk ke node children
     */
 
+    adrP PP = findParent(PL, nim);
+    adrC CP = findChildren(CL, makul);
     //ket : CP = Children's pointer, PP = Parent's pointer, RP = Relation's pointer
 
     adrR RP = new node_relation;
@@ -233,11 +235,19 @@ void createRelation(adrP PP, adrC CP){
 
 }
 
-void deleteRelation(adrP PP, adrR RP){
+void deleteRelation(listParent PL, string nim, string makul){
     /*
-    IS :masukan berupa pointer yang menunjuk ke node parent, dan pointer node relation yang akan dihapus
+    IS :masukan berupa list parent, nim milik node parent dan
+        makul milik node children yang ditunjuk oleh RP
     FS :RP dihapus dari dalam list relation PP
     */
+    adrP PP = findParent(PL, nim);
+    adrR RP= PP->course.First;
+    while(RP->next_course->info.nama != makul && RP != NULL){
+        RP = RP->next;
+    }
+
+
     if(RP == PP->course.First){
         //Jika RP element relation paling depan
         if(RP->next != NULL){
@@ -247,7 +257,7 @@ void deleteRelation(adrP PP, adrR RP){
             //Jika tidak terdapat element setelah RP
             PP->course.First = NULL;
         }
-    } else {
+    } else if (RP!=NULL){
         //Jika RP bukan element paling depan
         adrR RPiterator = PP->course.First;
         while(RPiterator->next != RP){
@@ -263,7 +273,6 @@ void deleteRelation(adrP PP, adrR RP){
             RPiterator->next = RP->next;
         }
     }
-    RP->next = NULL;
 }
 
 /*
