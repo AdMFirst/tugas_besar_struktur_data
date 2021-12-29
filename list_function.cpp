@@ -309,3 +309,22 @@ void semesterBaru(listParent PL){
     }
 
 }
+
+void showChildrenFrom(listParent PL,string NIM){
+//    IS. Terdefinisi sebuah list parent yang tidak kosong/ NULL dan sebuah string NIM
+//    FS. menampilkan mata pelajaran yang diambil oleh mahasiswa dengan nim yang ingin dicari
+    adrP p = findParent(PL, NIM);
+    if (p == NULL){
+        cout << "NIM yang anda cari tidak terdaftar" << endl;
+    }else{
+        adrR r = p->course.First->next;
+        cout <<"Mahasiswa dengan NIM " << NIM << " mengambil mata kuliah:" << endl;
+        while (r != NULL){
+            cout << r->next_course->info.nama << endl;
+            cout << "\tdiajar oleh dosen " << r->next_course->info.dosen << endl;
+            cout << "\tmulai pada jam " << r->next_course->info.waktu_mulai << endl;
+            cout << "\tdi ruangan " << r->next_course->info.ruangan << endl;
+            r = r->next;
+        }
+    }
+}
