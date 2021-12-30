@@ -8,12 +8,12 @@ int main(){
     infotypeParent PI;
     infotypeChildren CI;
     string nim;
-    string namaMaKul;
+    string namaMaKul, warnings;
 
     int pilihan;
     start:
     system("cls");
-    cout << " "<<endl; // <-- judul?
+    cout << "==== PROGRAM DATA MATA KULIAH MAHASISWA ===="<<endl; // <-- judul?
     cout<<"1. Tambah Mahasiswa"<<endl;
 	cout<<"2. Hapus Mahasiswa"<<endl;
 	cout<<"3. Tampilkan Data Mahasiswa"<<endl;
@@ -23,6 +23,7 @@ int main(){
 	cout<<"7. Hapus Mata Kuliah yang Telah Tersedia"<<endl;
 	cout<<"8. Ambil Mata Kuliah"<<endl;
 	cout<<"9. Tampilkan Mata Kuliah sedang Diambil"<<endl;
+	cout<<"10. Hapus seluruh data Mata Kuliah yang sedang diambil"<<endl;
 	// ditambah apa?
 	cout<<"00. Keluar"<<endl;
 	cout<<endl;
@@ -144,8 +145,18 @@ int main(){
         }
         break;
         case 00:{
-            cout << "(Nama_Judul) DIHENTIKAN, PROGRAM/SISTEM BERHENTI..."<<endl;
+            cout << "PROGRAM DIHENTIKAN..."<<endl;
             return 0;                        //bagusan apa? program/sistem? atau apa?
+        }
+        break;
+        case 10:{
+            cout << "ANDA YAKIN? (Y/N)"<<endl;
+            cin>>warnings;
+            if(warnings == "Y" || warnings == "y"){
+                semesterBaru(PL);
+                cout << "Data selesai dihapus"<<endl;
+            }
+            system("pause");
         }
         break;
         default:

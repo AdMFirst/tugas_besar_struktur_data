@@ -224,19 +224,23 @@ void createRelation(listParent PL, listChildren CL, string nim, string makul){
     adrC CP = findChildren(CL, makul);
     //ket : CP = Children's pointer, PP = Parent's pointer, RP = Relation's pointer
 
-    adrR RP = new node_relation;
-    RP->next_course = CP;
-    RP->next = NULL;
+    if(PP != NULL && CP != NULL){
+        adrR RP = new node_relation;
+        RP->next_course = CP;
+        RP->next = NULL;
 
-    if(PP->course.First == NULL){
-        //Jika list kosong
-        PP->course.First = RP;
-    } else {
-        adrR tempRP = PP->course.First;
-        while(tempRP->next != NULL){
-            tempRP = tempRP->next;
+        if(PP->course.First == NULL){
+            //Jika list kosong
+            PP->course.First = RP;
+        } else {
+            adrR tempRP = PP->course.First;
+            while(tempRP->next != NULL){
+                tempRP = tempRP->next;
+            }
+            tempRP->next = RP;
         }
-        tempRP->next = RP;
+    } else {
+        cout << "ERROR, Mahasiswa atau Mata Kuliah tidak ditemukan"<<endl;
     }
 
 }
@@ -324,8 +328,11 @@ void showChildrenFrom(listParent PL,string NIM){
     if (p == NULL){
         cout << "NIM yang anda cari tidak terdaftar" << endl;
     }else{
-        adrR r = p->course.First->next;
+        adrR r = p->course.First;
         cout <<"Mahasiswa dengan NIM " << NIM << " mengambil mata kuliah:" << endl;
+        if(r == NULL){
+            cout<<"Mahasiswa ini sedang tidak mengambil mata kuliah"<<endl;
+        }
         while (r != NULL){
             cout << i<<". "<< r->next_course->info.nama << endl;
             cout << "\tdiajar oleh dosen " << r->next_course->info.dosen << endl;
