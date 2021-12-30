@@ -78,13 +78,16 @@ void showParent(listParent PL){
     // IS. terdefinisi sebuah listParent (list mungkin kosong)
     // FS. menampilkan seluruh isi dari list parent
     adrP p = PL.First;
+    int i = 1;
     if (p == NULL){
         cout << "List Kosong." << endl;
     }else{
         while (p != NULL){
+            cout << "Mahasiswa ke-"<<i<<endl;
             cout << "Nama\t: " << p->info.nama << endl;
             cout << "NIM\t: " << p->info.nim << endl << endl;
             p = p->next;
+            i++;
         }
     }
 }
@@ -175,15 +178,18 @@ void showChildren(listChildren &CL){
     FS :Seluruh isi list children di ouputkan ke layar
     */
     adrC C = CL.First;
+    int i = 1;
     if (C == NULL){
         cout << "List Kosong." << endl;
     }else{
         while (C != NULL){
-            cout << "Mata kuliah :" << C->info.nama<<endl;
+            // ditambah angka gini bagus ga ya?
+            cout << i << ". Mata kuliah :" << C->info.nama<<endl;
             cout << "\tdiajar oleh dosen "<<C->info.dosen<<endl;
             cout << "\tmulai pada jam " << C->info.waktu_mulai<<endl;
             cout << "\tdi ruangan "<<C->info.ruangan<<endl;
             C = C->next;
+            i++;
         }
     }
 
@@ -308,4 +314,25 @@ void semesterBaru(listParent PL){
         PP = PP->next;
     }
 
+}
+
+void showChildrenFrom(listParent PL,string NIM){
+//    IS. Terdefinisi sebuah list parent yang tidak kosong/ NULL dan sebuah string NIM
+//    FS. menampilkan mata pelajaran yang diambil oleh mahasiswa dengan nim yang ingin dicari
+    adrP p = findParent(PL, NIM);
+    int i = 1;
+    if (p == NULL){
+        cout << "NIM yang anda cari tidak terdaftar" << endl;
+    }else{
+        adrR r = p->course.First->next;
+        cout <<"Mahasiswa dengan NIM " << NIM << " mengambil mata kuliah:" << endl;
+        while (r != NULL){
+            cout << i<<". "<< r->next_course->info.nama << endl;
+            cout << "\tdiajar oleh dosen " << r->next_course->info.dosen << endl;
+            cout << "\tmulai pada jam " << r->next_course->info.waktu_mulai << endl;
+            cout << "\tdi ruangan " << r->next_course->info.ruangan << endl;
+            r = r->next;
+            i++;
+        }
+    }
 }

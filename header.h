@@ -94,4 +94,5 @@ void createRelation(listParent PL, listChildren CL, string nim, string makul);
 void deleteRelation(listParent PL, string nim, string makul);
 
 void semesterBaru(listParent PL);
+void showChildrenFrom(listParent PL,string NIM);
 #endif // HEADER_H_INCLUDED
