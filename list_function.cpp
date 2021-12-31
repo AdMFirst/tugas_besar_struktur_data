@@ -183,7 +183,6 @@ void showChildren(listChildren &CL){
         cout << "List Kosong." << endl;
     }else{
         while (C != NULL){
-            // ditambah angka gini bagus ga ya?
             cout << i << ". Mata kuliah :" << C->info.nama<<endl;
             cout << "\tdiajar oleh dosen "<<C->info.dosen<<endl;
             cout << "\tmulai pada jam " << C->info.waktu_mulai<<endl;
@@ -321,23 +320,27 @@ void semesterBaru(listParent PL){
 }
 
 void showChildrenFrom(listParent PL,string NIM){
-//    IS. Terdefinisi sebuah list parent yang tidak kosong/ NULL dan sebuah string NIM
+//    IS. Terdefinisi sebuah list parent PL dan sebuah string NIM
 //    FS. menampilkan mata pelajaran yang diambil oleh mahasiswa dengan nim yang ingin dicari
     adrP p = findParent(PL, NIM);
     int i = 1;
+    if (PL.First == NULL){
+        cout << "- Tidak ada mahasiswa yang terdaftar"<<endl<<endl;
+    }
     if (p == NULL){
-        cout << "NIM yang anda cari tidak terdaftar" << endl;
+        cout << "- NIM yang anda cari tidak terdaftar" << endl;
     }else{
         adrR r = p->course.First;
         cout <<"Mahasiswa dengan NIM " << NIM << " mengambil mata kuliah:" << endl;
+        // Belum/ tidak membuat relasi
         if(r == NULL){
-            cout<<"Mahasiswa ini sedang tidak mengambil mata kuliah"<<endl;
+            cout<<"- Mahasiswa ini sedang tidak mengambil mata kuliah"<<endl<<endl;
         }
         while (r != NULL){
             cout << i<<". "<< r->next_course->info.nama << endl;
-            cout << "\tdiajar oleh dosen " << r->next_course->info.dosen << endl;
-            cout << "\tmulai pada jam " << r->next_course->info.waktu_mulai << endl;
-            cout << "\tdi ruangan " << r->next_course->info.ruangan << endl;
+            cout << "   diajar oleh dosen " << r->next_course->info.dosen << endl;
+            cout << "   mulai pada jam " << r->next_course->info.waktu_mulai << endl;
+            cout << "   di ruangan " << r->next_course->info.ruangan << endl;
             r = r->next;
             i++;
         }
