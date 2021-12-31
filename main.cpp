@@ -13,16 +13,16 @@ int main(){
     int pilihan;
     start:
     system("cls");
-    cout << "==== PROGRAM DATA MATA KULIAH MAHASISWA ===="<<endl; // <-- judul?
-    cout<<"1. Tambah Mahasiswa"<<endl;
-	cout<<"2. Hapus Mahasiswa"<<endl;
-	cout<<"3. Tampilkan Data Mahasiswa"<<endl;
-	cout<<"4. Cari Data Mahasiswa"<<endl;
-	cout<<"5. Tambah Mata Kuliah yang Akan Disediakan"<<endl;
-	cout<<"6. Tampilkan Mata Kuliah yang Tersedia"<<endl;
-	cout<<"7. Hapus Mata Kuliah yang Telah Tersedia"<<endl;
-	cout<<"8. Ambil Mata Kuliah"<<endl;
-	cout<<"9. Tampilkan Mata Kuliah sedang Diambil"<<endl;
+    cout << "==== PROGRAM DATA MATA KULIAH MAHASISWA ===="<<endl;
+    	cout<<"1.  Tambah Mahasiswa"<<endl;
+	cout<<"2.  Hapus Mahasiswa"<<endl;
+	cout<<"3.  Tampilkan Data Mahasiswa"<<endl;
+	cout<<"4.  Cari Data Mahasiswa"<<endl;
+	cout<<"5.  Tambah Mata Kuliah yang Akan Disediakan"<<endl;
+	cout<<"6.  Tampilkan Mata Kuliah yang Tersedia"<<endl;
+	cout<<"7.  Hapus Mata Kuliah yang Telah Tersedia"<<endl;
+	cout<<"8.  Ambil Mata Kuliah"<<endl;
+	cout<<"9.  Tampilkan Mata Kuliah sedang Diambil"<<endl;
 	cout<<"10. Hapus seluruh data Mata Kuliah yang sedang diambil"<<endl;
 	// ditambah apa?
 	cout<<"00. Keluar"<<endl;
@@ -40,6 +40,8 @@ int main(){
             cout<<"NIM Mahasiswa\t: ";
             cin>>PI.nim;
             insertNewParent(PL, PI);
+	    cout<<"Data selesai ditambahkan"<<endl;
+	    system("pause");
         }
         break;
         case 2:{
@@ -54,6 +56,8 @@ int main(){
                 goto start;
             }
             deleteParent(PL, PP);
+	    cout<<"Data selesai dihapus"<<endl;
+	    system("pause");
         }
         break;
         case 3:{
@@ -87,6 +91,8 @@ int main(){
             cout<<"Ruang Pembelajaran\t: ";
             cin>>CI.ruangan;
             insertNewChildren(CL, CI);
+	    cout<<"Data selesai ditambahkan"<<endl;
+	    system("pause");
         }
         break;
         case 6:{
@@ -107,6 +113,8 @@ int main(){
                 goto start;
             }
             deleteChildren(CL, CP);
+	    cout<<"Data selesai dihapus"<<endl;
+	    system("pause");
         }
         break;
         case 8:{
@@ -128,6 +136,8 @@ int main(){
                 goto start;
             }
             createRelation(PL, CL, nim, namaMaKul);
+  	    cout<<"Data selesai ditambahkan"<<endl;
+	    system("pause");
         }
         break;
         case 9:{
@@ -145,8 +155,12 @@ int main(){
         }
         break;
         case 00:{
-            cout << "PROGRAM DIHENTIKAN..."<<endl;
-            return 0;                        //bagusan apa? program/sistem? atau apa?
+	    cout << "ANDA YAKIN	INGIN KELUAR? (Y/N)"<<endl;
+            cin>>warnings;
+            if(warnings == "Y" || warnings == "y"){
+                cout << "PROGRAM DIHENTIKAN..."<<endl;
+                return 0;
+            }                       
         }
         break;
         case 10:{
