@@ -155,12 +155,12 @@ int main(){
         }
         break;
         case 00:{
-	    cout << "ANDA YAKIN	INGIN KELUAR? (Y/N)"<<endl;
+	    cout << "ANDA YAKIN INGIN KELUAR? (Y/N)"<<endl;
             cin>>warnings;
             if(warnings == "Y" || warnings == "y"){
                 cout << "PROGRAM DIHENTIKAN..."<<endl;
                 return 0;
-            }                       
+            }
         }
         break;
         case 10:{
